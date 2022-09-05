@@ -1,0 +1,77 @@
+---- 1) ----
+
+CREATE DATABASE s184260;
+
+USE s184260;
+
+CREATE TABLE persons_week02 (
+cpr CHAR(11) NOT NULL,
+first_name VARCHAR(50),
+last_name VARCHAR(50), 
+height SMALLINT UNSIGNED, 
+weight SMALLINT UNSIGNED, 
+biological_mother CHAR(11) DEFAULT NULL,
+biological_father CHAR(11) DEFAULT NULL,
+PRIMARY KEY(cpr));
+
+LOAD DATA LOCAL INFILE '/home/projects/pr_course/persons.csv' INTO TABLE persons_week02 FIELDS TERMINATED BY ',' (cpr, first_name, last_name, height, weight, @a, @b) SET biological_father = NULLIF(@a, ''), biological_mother = NULLIF(@b, '');
+
+CREATE TABLE marriage_week02 (
+male_cpr CHAR(11) NOT NULL,
+female_cpr CHAR(11) NOT NULL,
+start_of_marriage DATE NOT NULL,
+end_of_marriage DATE DEFAULT NULL,
+PRIMARY KEY(male_cpr, female_cpr));
+
+LOAD DATA LOCAL INFILE '/home/projects/pr_course/marriage.csv' INTO TABLE marriage_week02 FIELDS TERMINATED BY ',' (male_cpr, female_cpr, @a, @b) SET start_of_marriage=STR_TO_DATE(@a, "%d%m%Y"), end_of_marriage=STR_TO_DATE(@b, "%d%m%Y");
+
+CREATE TABLE disease_week02 (
+cpr CHAR(11) NOT NULL,
+name_of_disease VARCHAR(100),
+date_of_discovery DATE);
+
+LOAD DATA LOCAL INFILE '/home/projects/pr_course/disease.csv' INTO TABLE disease_week02 FIELDS TERMINATED BY ',' (cpr, name_of_disease, @a) SET date_of_discovery=STR_TO_DATE(@a, "%d%m%Y");
+
+---- 2) ----
+
+1. 
+SELECT * FROM persons_week02 WHERE biological_father IS NULL;
+ - 92 rows
+
+2.
+SELECT COUNT(cpr) FROM persons_week02 WHERE biological_mother IS NULL;
+ - 92
+
+3.
+SELECT COUNT(*) FROM disease_week02 WHERE name_of_disease LIKE '%cancer%';
+ - 160
+
+4.
+SELECT COUNT(DISTINCT(cpr)) FROM disease_week02 WHERE name_of_disease LIKE '%cancer%';
+ - 138
+
+5. 
+SELECT * FROM persons_week02 WHERE cpr IN (SELECT female_cpr FROM marriage_week02 WHERE male_cpr IN (SELECT cpr from persons_week02 WHERE first_name='Finn'));
+ - 6 rows
+
+6.
+INSERT INTO persons_week02 VALUES ('042069-1337', 'Christian', 'Jacobsen', 155, 97, NULL, NULL);
+INSERT INTO persons_week02 VALUES ('069420-7330', 'Anna', 'Rasmussen', 189, 69, NULL, NULL);
+INSERT INTO persons_week02 VALUES ('131133-6969', 'Bartholomaeus', 'Mozart', 196, 80, '069420-7330', '042069-1337');
+INSERT INTO marriage_week02 VALUES ('042069-1337', '069420-7330', STR_TO_DATE('07082025', '%d%m%Y'), STR_TO_DATE('', ''));
+INSERT INTO disease_week02 VALUES ('131133-6969', 'Broken nose', STR_TO_DATE('07082035', '%d%m%Y'));
+
+7.
+DELETE FROM marriage_week02 WHERE male_cpr IN (SELECT cpr FROM persons_week02 WHERE last_name='Rapacki') OR female_cpr IN (SELECT cpr FROM persons_week02 WHERE last_name='Rapacki');
+ - 6 rows affected
+
+DELETE FROM disease_week02 WHERE cpr IN (SELECT cpr FROM persons_week02 WHERE last_name='Rapacki');
+ - 30 rows affected
+
+UPDATE persons_week02 SET biological_father=NULL WHERE biological_father IN (SELECT cpr FROM persons_week02 WHERE last_name='Rapacki');
+UPDATE persons_week02 SET biological_mother=NULL WHERE biological_mother IN (SELECT cpr FROM persons_week02 WHERE last_name='Rapacki');
+ - 7 and 5 rows affected
+
+DELETE FROM persons_week02 WHERE last_name='Rapacki';
+ - 5 rows affected
+
