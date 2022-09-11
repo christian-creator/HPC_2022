@@ -1,0 +1,94 @@
+Week 2 - Exercises
+By: Caroline Uldahl Martensen
+
+1.
+
+CREATE DATABASE s183493;
+
+USE s183493;
+
+# Creating the tables
+CREATE TABLE persons (
+cpr VARCHAR(11) NOT NULL,
+first_name VARCHAR(30),
+last_name VARCHAR(30),
+height INT(10) UNSIGNED,
+weight INT(10) UNSIGNED,
+biological_mother VARCHAR(11) DEFAULT NULL,
+biological_father VARCHAR(11) DEFAULT NULL,
+PRIMARY KEY(cpr));
+
+CREATE TABLE marriage (
+male_cpr VARCHAR(11) NOT NULL,
+female_cpr VARCHAR(11) NOT NULL,
+marriage_start CHAR(8) NOT NULL,
+marriage_end CHAR(8) DEFAULT NULL,
+PRIMARY KEY(male_cpr, female_cpr));
+
+CREATE TABLE disease (
+cpr CHAR(11) NOT NULL,
+name_disease VARCHAR(40),
+date_discovery VARCHAR(8));
+
+# Loading the file contents into the tables
+
+LOAD DATA LOCAL INFILE ’/home/projects/pr_course/persons.csv’ INTO TABLE persons
+ FIELDS TERMINATED BY ’,’
+ (cpr, first_name, last_name, height, weight, biological_mother, biological_father);
+
+LOAD DATA LOCAL INFILE ’/home/projects/pr_course/marriage.csv’ INTO TABLE marriage
+ FIELDS TERMINATED BY ’,’
+ (male_cpr, female_cpr, marriage_start, marriage_end);
+
+LOAD DATA LOCAL INFILE ’/home/projects/pr_course/disease.csv’ INTO TABLE disease
+ FIELDS TERMINATED BY ’,’
+ (cpr, name_disease, date_discovery);
+
+2.1: Who do not have a father ?
+Command: SELECT first_name FROM persons WHERE biological_father = ' ';
+
+2.2: How many do not have a mother?
+Command: SELECT COUNT(cpr) FROM persons WHERE biological_mother = ' ';
+Result: 92
+
+2.3: How many cases of cancer - any type?
+Command: SELECT COUNT(cpr) FROM disease WHERE name_disease LIKE '%Cancer';
+Result: 147
+
+2.4: How many persons had cancer – any type?
+Command: SELECT COUNT(DISTINCT(cpr)) FROM disease WHERE name_disease LIKE '%Cancer';
+Result: 128
+
+2.5: Who are or have been married to someone named ’Finn’?
+Command: SELECT COUNT(male_cpr) FROM marriage WHERE male_cpr IN (SELECT male_cpr FROM persons WHERE first_name = 'Finn');
+Result: 276
+
+2.6: Create 2 imaginary persons. Marry them to each other. Make them have a kid. Give the kid a broken nose. Insert all this info in the database.
+Command:
+INSERT INTO persons (cpr, first_name, last_name, height, weight) VALUES ('120795-5609', 'Ole','Ulriksen', 145, 77);
+INSERT INTO persons (cpr, first_name, last_name, height, weight) VALUES ('090698-9722', 'Solvej','Ågaard', 177, 75);
+INSERT INTO marriage (male_cpr, female_cpr, marriage_start) VALUES ('120795-5609', '090698-9722', '05092022');
+INSERT INTO persons (cpr, first_name, last_name, height, weight, biological_mother, biological_father) VALUES ('250323-6170', 'Æbleskive','Ågaard', 153, 50, '090698-9722','120795-5609' );
+INSERT INTO disease (cpr, name_disease, date_discovery) VALUES ('250323-6170','Broken nose', '29022036' );
+
+2.7: Delete everyone with the last name ’Rapacki’. Make sure that database is consistent afterwards, like there is no marriages to non-existing persons or references to non-existing parents.
+Notes to self on how to solve this exercise:
+"Rapacki" appears in the persons table both people who has it as a last name and
+ for people where people with the "Rapacki" last name are parents. Furthermore,
+ it appears in the disease table, every time a "Rapacki" has had a disease. This
+ also applies for the marriage table. So, the people with a "Rapacki" parent, as
+ they should not be deleted, I will use the update function and change the parent
+ to NULL. Afterwards I will delete them from the disease and marriage table.
+ Lastly, they should be deleted from the persons table. This should be done last
+ so that I can make a "list" of their cpr numbers for the other deletions (This
+ should be done with the IN function).
+
+Command:
+UPDATE persons SET biological_mother = NULL WHERE biological_mother IN (SELECT cpr FROM persons WHERE last_name = 'Rapacki');
+UPDATE persons SET biological_father = NULL WHERE biological_father IN (SELECT cpr FROM persons WHERE last_name = 'Rapacki');
+
+DELETE FROM disease WHERE cpr IN (SELECT cpr FROM persons WHERE last_name = 'Rapacki');
+
+DELETE FROM marriage WHERE male_cpr IN (SELECT cpr FROM persons WHERE last_name = 'Rapacki') OR female_cpr IN (SELECT cpr FROM persons WHERE last_name ='Rapacki');
+
+DELETE FROM persons WHERE last_name = 'Rapacki';
