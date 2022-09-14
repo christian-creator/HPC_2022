@@ -1,0 +1,16 @@
+Peer review of exercises from week 2 - Christian
+By: Caroline Uldahl
+
+Generally, I think the exercise is really nice. I especially like your comments
+which enhances the readability of the code, even though sql is quite readable to
+begin with.
+
+In your table setup there are a few field specifications I personally would have
+changed, but you use what ever floats your boat, these are just suggestions.
+In your marriage table you have set the default value of both cprs to
+NULL. I would have changed this to NOT NULL as you also use it as primary key
+and therefore needs to be inputted. I believe that NOT NULL could also be
+beneficial to add to the other cprs in the other tables.
+
+In exercise 2 I believe you skipped question 3, but I believe you just missed
+it :) 
