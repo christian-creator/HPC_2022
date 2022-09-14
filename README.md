@@ -14,3 +14,7 @@
 * 14/11 Lesson 11: [MapReduce and Binary representation](https://teaching.healthtech.dtu.dk/22112/index.php/MapReduce_and_Binary_representation)
 * 21/11 Lesson 12: [Hash usage](https://teaching.healthtech.dtu.dk/22112/index.php/Hash_usage)
 * 28/11 Lesson 13: [Exercises and Organization](https://teaching.healthtech.dtu.dk/22112/index.php/Exercises_and_Organization)
+
+## Peer-review
+Til ulige lessons retter CP -> Caro -> Fred ->
+Til lige lessons retter CP <- Caro <- Fred <-
