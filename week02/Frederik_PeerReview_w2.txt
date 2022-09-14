@@ -1,0 +1,24 @@
+Feedback on Frederik's Exercises 
+By: Christian
+Exercise 1.
+The solution resembles mine a lot; thus, I do not have many comments as I also find this solution to be good. 
+Still, there are some pretty cool differences, like using different datatypes, including the DATE and SMALLINT data types. 
+
+Exercise 2.
+1)
+The same solution as mine, although you use the keyword IS where I use =. I could imagine that IS might be faster.
+2)
+The same solution as mine, although you use the keyword IS where I use =. 
+3) – 4)
+Here I only use "%cancer" so your solution is more general than mine. Furthermore, I did not use distinct keywords but rather counted the number of times the word cancer is present. 
+Thus your solution is better, and min only solves 1 of the two problems >:(
+5)
+Here we had the exact same solution. Pretty cool!
+6)
+Pretty uncool, making me 157cm when in actuality I'm 207 cm. Still, my birthday was accurate. 
+6)
+I liked your solution here by lastly deleting the 'Rapacki' people from the person database and using their CPR numbers to delete them from the other databases. 
+Still, I found that there are references to people not found in the person database, which is not from the Rapacki database. Therefore, it would have been cool to do something like:
+
+DELETE FROM marriage WHERE male_cpr NOT IN (SELECT CPR FROM person) or female_cpr NOT IN (SELECT CPR FROM person);
+
