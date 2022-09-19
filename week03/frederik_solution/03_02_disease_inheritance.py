@@ -32,13 +32,18 @@ cur.execute('''SELECT cpr, name_of_disease FROM disease_week02''')
 # Getting all rows
 resultset = cur.fetchall()
 
+# Close cursor and connection
+cur.close()
+cnx.close()
+
+import re
+
 for row in resultset:
-    family_tree[row[0]][2].add(row[1])
+    if re.search(".*[Cc]ancer.*", row[1]) is None:
+        family_tree[row[0]][2].add(row[1])
+    else:
+        family_tree[row[0]][2].add("Cancer")
 
-#print(family_tree)
-
-print()
-print()
 
 def searchTree(key, path = [], child_diseases = None):
     if key is None:
@@ -48,6 +53,8 @@ def searchTree(key, path = [], child_diseases = None):
     
     if child_diseases is not None:
         diseases = diseases.intersection(child_diseases)
+        if not diseases:
+            return set()
 
     new_path = [*path, key]
 
@@ -63,8 +70,5 @@ def searchTree(key, path = [], child_diseases = None):
 
 
 for key in family_tree.keys():
-    searchTree(key)    
+    searchTree(key)
 
-# Close cursor and connection
-cur.close()
-cnx.close()
