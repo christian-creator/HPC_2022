@@ -1,0 +1,25 @@
+Copy using while loop
+
+real	0m29.099s
+user	0m21.666s
+sys	0m4.025s
+Copy using for loop
+
+real	0m23.805s
+user	0m14.247s
+sys	0m3.802s
+Copy using for loop w/ binary rw
+
+real	0m18.143s
+user	0m10.159s
+sys	0m3.447s
+Copy using chunks of 10k
+
+real	0m8.278s
+user	0m0.511s
+sys	0m3.901s
+Copy using cp
+
+real	0m7.941s
+user	0m0.008s
+sys	0m3.953s
