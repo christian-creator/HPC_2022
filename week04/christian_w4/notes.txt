@@ -1,0 +1,19 @@
+program0.py - While loop
+real    0m27.580s
+user    0m20.859s
+sys 0m3.930s
+
+program1.py - For loop
+real    0m23.901s
+user    0m14.222s
+sys 0m4.450s
+
+program2.py - For loop binary
+real    0m21.754s
+user    0m10.403s
+sys 0m4.006s
+
+program3.pyx - For loop binary in chunks
+real    0m8.035s
+user    0m0.519s
+sys 0m3.936s
