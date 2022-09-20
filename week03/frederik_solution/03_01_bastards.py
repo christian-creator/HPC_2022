@@ -36,6 +36,7 @@ for row in resultset:
     resultset = cur.fetchall()
 
     if len(resultset) == 0:
+        print(row[1], row[2], "("+row[0]+") is a bastard.")
         continue
     
     y, m, d = int(cpr[4:6]), int(cpr[2:4]), int(cpr[:2])
