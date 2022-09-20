@@ -1,0 +1,31 @@
+Peerreview of Carolines solutions for week 3.
+Peer-reviewer: Christian
+
+Exercise 1:
+General thoughts on the code:
+I think that both the number and quality of the comments are very satisfying, making the code easily interpretable. Furthermore, the code's structure has appropriate spacing, once again making the code very readable.
+Lastly, I think that variable naming is very appropriate and easy to follow. 
+
+General thoughts on the solution:
+There are a couple of things that I have done differently from you. First of all, you do not annotate kids as bastards in case they do not have a mother or a father, whereas I annotate them as bastards (This may not be correct).
+Furthermore, although I'm not completely sure, it does not seem like you convert the dates to integers and compare them as strings which means that your comparisons might be wrong:
+An example can be seen below:
+Child birthday:
+day_of_birth + month_of_birth + century + year_of_birth : "24071997"
+Wedding start
+day_of_birth + month_of_birth + century + year_of_birth : "01011999"
+In this case, with the statement: marriage_start < updated_birth_date, it would return True even though the child is born before wedlock. 
+
+Furthermore, I use marriage_start < updated_birth_date such that children born on the day of the wedding are not bastards :)
+Lastly, it might be wise to close the connection to the SQL server as soon as you have read the date with cur.fetchall(), but this is less important. 
+
+Exercise 2:
+General thoughts on the code:
+In this solution, I think it would have been great with more comments describing what the functions do and what the idea is. Still, the structure of the code has appropriate spacing making the code very readable.
+Furthermore, I think variable naming is very appropriate and easy to follow. 
+
+
+General thoughts on the solution:
+I can see that you generally query the SQL database a lot every time you either call the function grandparents or get_diseases. This might be ineffective. Instead, it might be better to call the database once and then filter the retrieved database instead.
+Generally, I can see that our solutions are quite different from each other as I have used recursion to get the longest disease heritage while you only look for three links. Still, I think your solution is most likely better as the exercise was only meant to capture 3-generations.
+Meaning, that I think that your solution is good as it gets the job done without using hard-to-follow logic, whereas mine might be less readable and possibly less accurate. I also like the use of set intersections!! Very cool solution 
