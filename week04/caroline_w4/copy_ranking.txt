@@ -1,0 +1,39 @@
+1. Copying using cp
+
+real	0m7.103s
+user	0m0.002s
+sys	0m3.890s
+
+2. Copying using chunks
+
+real	0m8.216s
+user	0m0.509s
+sys	0m4.052s
+
+3. Copying using bytes
+
+real	0m18.285s
+user	0m10.931s
+sys	0m3811s
+
+4. Copying using for loops
+
+real	0m21.700s
+user	0m14.045s
+sys	0m3.701s
+
+5. Copying using while loops
+
+real	0m28.773s
+user	0m21.398s
+sys	0m3.825s
+
+
+In the bottom of the ranking we find while and for loops without using binary 
+mode for reading and writing. So in the bottom two python needs to investigate
+which charset is used before reading and writing. As written in the slides, thisimposes a translational burden on the program. The second fastest method is 
+reading in chunks, here the program lowers the I/O operations by utilizing file buffers. This is also why for loops are slightly faster than while loops. The 
+fastest method to copy the file is to use cp directly in the command line. I 
+would expect that they have fully utilized the methods mentioned earlier. As 
+well as having written the function in a C language, which is also known to be 
+faster than python. 
