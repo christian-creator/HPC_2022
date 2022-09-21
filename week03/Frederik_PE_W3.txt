@@ -1,0 +1,23 @@
+Peer Evaluation of Frederik W3
+By: Caroline
+
+Exercise 1:
+
+Really nice work. The spacing in the structure of the codes is really nice and makes 
+each "chunk" easy to follow. Personally, I would have added a few more comments in 
+order to make the code just a tad bit more readable. Variable naming is also nice and 
+easy to follow.
+
+When manipulating the dates I think it is very clever of you to have used the datetime
+package. I cannot really see much to comment on, as I find this solution short and to
+the point. All requirements mentioned in the exercise are fulfilled. So great job :)
+
+
+Exercise 2:
+Generally the same comments as mentioned above. I like how you did this, with the dic.
+As mentioned above it would have been really nice with a few more comments, especially
+around the function, so that it was easier to follow. 
+
+Again, all requirements in the exercise are fulfilled.
+
+
