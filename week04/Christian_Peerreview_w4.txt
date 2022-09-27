@@ -1,0 +1,13 @@
+Peerreview Christian Week 4
+By: Caroline
+
+I can see that you have made the 4 programs and have timed them with the command
+time. I do not really have any comments on this, I could not have asked for
+more. 
+
+In your notes.txt you have inputted the times of all the programs, except for
+the cp command. Here it would have been nice if this had also been shown. As far
+as I have understood, we were also supposed to write a small text that explained
+the differences in the execution time. This seems to be missing from the solution.
+Please correct me if I am wrong :)
+
