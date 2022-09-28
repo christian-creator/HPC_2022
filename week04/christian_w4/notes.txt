@@ -17,3 +17,12 @@ program3.pyx - For loop binary in chunks
 real    0m8.035s
 user    0m0.519s
 sys 0m3.936s
+
+cp 
+real 0m8.878s
+user    0m0.002s
+sys 0m4.331s
+
+cp is clearly the fastast followed by the for loop with chunks.
+The slowest progamme was the while loop with translation from binary to UTF-8.
+

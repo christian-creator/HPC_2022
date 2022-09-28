@@ -1,0 +1,9 @@
+Peerreview Caroline Week 4
+By: Frederik
+
+You forgot to close the files in mycopy2.py, but otherwise the code is perfect!
+
+It would be great to indicate within the files as comments or in the script names what kind of file copy is performed. Just an idea - haven't done it myself either, lol.
+
+Your observations a great as well. Very nice :) 
+
