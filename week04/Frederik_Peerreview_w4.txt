@@ -1,0 +1,11 @@
+Peerreview Frederik Week 4
+By: Christian
+
+Comments on code:
+General thoughts on the code:
+Generally i think that both the structure and the readbility of the code is very satisfying in both the 4 copy scripts aswell as the bash script and summary text file.
+
+I think as the solution resembles my own alot i do not have many comments on the actual solution. Maybe it would have been cool to comment on the fastest script in the summary copy_performance results. 
+As it is now up to the reader to interpret the results... I dont know...
+
+Very good solution!
