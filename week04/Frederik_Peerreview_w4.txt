@@ -5,6 +5,8 @@ Comments on code:
 General thoughts on the code:
 Generally, I think that both the structure and the readability of the code are very satisfying in both the four copy scripts as well as the bash script and summary text file.
 
-As I think your solution resembles mine, I do not have many comments on the actual solution. Maybe it would have been cool to comment on the fastest script in the summary copy_performance results. However, as there is a ranking, it is pretty easy to read. Still, it is up to the reader to interpret your results... i don't know...
+As I think your solution resembles mine, I do not have many comments on the actual solution. 
+Maybe it would have been cool to comment on the fastest script in the summary copy_performance results. 
+However, as there is a ranking, it is pretty easy to read. Still, it is up to the reader to interpret your results... i don't know...
 
 Very good solution!
