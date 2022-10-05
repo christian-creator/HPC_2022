@@ -1,0 +1,14 @@
+Peerreview Caroline Week 4
+By: Christian
+General thoughts on the code:
+I think that both the number and quality of the comments are very satisfying, making the code easily interpretable. Furthermore, the code's structure has appropriate spacing, once again making the code very readable.
+Lastly, I think that variable naming is very appropriate and easy to follow. 
+
+
+Thoughts on the solution:
+Instead of using .replace("\n", "") to remove the newline from the header you can use .rstrip() which is most likely faster as it know where to look for the newline.
+Still, I think your initialization of the translation table is better than mine. I initialise the translation table every time I need to translate.
+There are some general structure things of your code that I might not completely agree with.. maybe.. but it is very nitpicky. Like opening files with with(open("file",). 
+Otherwise, I think your solution resembles mine, and therefore I do not have any major comments.
+
+Nice work!
