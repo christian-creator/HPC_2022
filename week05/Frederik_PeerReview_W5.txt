@@ -1,0 +1,16 @@
+Peer Review Frederik Week 5
+By: Caroline Uldahl
+
+Generally, I think this is a really good solution. It feels, as if you have 
+added more comments, which is really nice and makes it much easier to follow.
+Also, really nice spacing and structure.
+
+It seems as if you have implemented a lot of the things I at least tried to
+implement in my code, in order to optimise it. So, really nice, I will maybe
+try to get inspiration from your solutions, to further better my own :) 
+
+Something, that I at least thought of when reading your code, was how you 
+initialize your translation table. You are calling it multiple times in, as 
+it is inside a for loop. Personally, I have done differently, but I do not
+know if it is better to keep it as a local parameter, or easier to just do it
+once. I am sure, it is not that time consuming either way. 
