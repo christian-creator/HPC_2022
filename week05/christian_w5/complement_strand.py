@@ -24,6 +24,14 @@ def get_args():
     return args
 
 def count_bases(entry):
+    """Counting the bases in the entire sequence
+
+    Args:
+        entry (str): Nucleotide sequence of entry
+
+    Returns:
+        str: formatted string with counts
+    """
     N_counts = entry.count("n")
     A_counts = entry.count("a")
     T_counts = entry.count("t")
@@ -34,7 +42,17 @@ def count_bases(entry):
 
 
 
-def get_complement_strands(infile_path,outfile_path):
+def translate_write_complement_strands(infile_path,outfile_path):
+    """Read the fasta file and writes a new file with the complement strand with counts of the bases in the header.
+       Generally the function has been through several iterations to optimize speed. 1) It was found that stripping
+       every line was unnecessary since we wan the same format in the output. 2) Secondly the translate function was 
+       created to replace the "replace()" function. 3) It was also attempted to read/write the fasta files in binary 
+       mode. However, this was extremly slow compared to the solution presented
+       
+    Args:
+        infile_path (str): path to fasta
+        outfile_path (str): path to compleement
+    """
     outfile = open(outfile_path,"w")
     with open(infile_path,"r") as f:
         entry = ""
@@ -61,7 +79,7 @@ def get_complement_strands(infile_path,outfile_path):
 
 def main(args):
     # put your code here
-    get_complement_strands(args.infile, args.outfile)
+    translate_write_complement_strands(args.infile, args.outfile)
 
 if __name__ == "__main__":
     start_time = datetime.now()
