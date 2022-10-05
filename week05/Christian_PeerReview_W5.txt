@@ -1,0 +1,41 @@
+Peer Review Christian Week 5
+By: Frederik
+
+Nice and structured solution. Using argparse is a nice touch - although it crashes if 
+I give it no options (a help message would be great).
+
+I noticed that you use print to outfile, which is nice and readable, but keep in mind, 
+that this adds an extra newline at the end, which you already have in the string. Thus,
+your output is slightly wrong, but almost correct.
+
+I would have used binary read/write for this, as there is really no benefit not to - and
+I don't really get why your version with this addition did not work.
+As Caro also pointed out to me, you create a translation table for each time you translate, 
+which is not needed as all of the file has the same encoding. It is not a huge time cost though.
+
+My biggest pet peeve is your use of string += for this, which is suboptimal. If you try to
+run the following code, you will observe an almost 40% improvement from the += to join solution:
+
+import time
+
+str_test = "random line of text, damn this is long\n"
+
+def stringAdd(n):
+    out = ""
+    for i in range(n):
+        out += str_test
+    return str_test
+
+def stringJoinFromArray(n):
+    out = []
+    for i in range(n):
+        out.append(str_test)
+    return "".join(str_test)
+
+start = time.perf_counter()
+a = stringAdd(10000)
+print(time.perf_counter()-start)
+
+start = time.perf_counter()
+a = stringJoinFromArray(10000)
+print(time.perf_counter()-start) 
