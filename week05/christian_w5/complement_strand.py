@@ -1,3 +1,9 @@
+''''
+real	0m55.656s
+user	0m41.504s
+sys	0m9.481s
+'''
+
 import sys
 import os
 import argparse
