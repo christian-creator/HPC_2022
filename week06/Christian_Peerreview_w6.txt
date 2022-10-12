@@ -1,0 +1,23 @@
+Peer review Christian Week 6:
+By: Caroline Uldahl Martensen
+
+Some really good solutions. You have made a lot of functions to solve this 
+problem. I think it is really nice to do so, as it compatmentalize the code 
+well. Even though it can be a bit tricky, as you jump around in the document 
+when trying to read it, but it generally creates a really clean structure. 
+
+You have a nice amount of comments, which makes it easy to follow. 
+
+You have also added some more binary reading and writing, even though I guess 
+you were still struggling to get it to work proberly, which is a true mystery. 
+
+A small thing that I noticed, is that you have used both the os package and the 
+subprocess package, maybe it would streamline the code a bit if you only used 
+one, as they (as far as I understand) can do similar things, at least in regards
+to what we had to be using them for this week. 
+
+I do not really have a lot of comments to your code. I think it looks great and
+you have some nice solutions for the presented problems. I especially like how 
+you have made dictionaries for your temporary files, I guess this makes it 
+easier to keep track of them. 
+
