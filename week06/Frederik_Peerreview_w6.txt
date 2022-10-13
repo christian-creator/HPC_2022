@@ -1,0 +1,25 @@
+Peer review Frederik Week 6:
+By: Christian Peder Jacobsen
+
+Exercise 1:
+General thoughts on the code:
+Generally, I think that the very logical structure of the code makes it very easy to read. However, it might have been nice to have some comments explaining more in detail what you did.
+Still, I think it is a very nice and "pythonic" solution.
+
+Thoughts on the solution:
+Our solutions are almost 1:1 and thus I do not have any general comments on how the solution could be better. 
+The main difference is that you read and write in binary, which I did not find to be a quicker solution, but you most likely did.
+Nice work!
+
+Exercise 2:
+General thoughts on the code:
+Generally, I think that the very logical structure of the code makes it very easy to read. However, it might have been nice to have some comments 
+explaining more in detail what you did. Still, I think it is a very nice and "pythonic" solution.
+
+Thoughts on the solution:
+Once again, our solutions resemble each other a lot. In the collector part of the administrator function, I, however, use a different "wait" strategy. 
+My worker deletes the temporary files, which it reads the fasta from a tmp/ folder. This way, when all files are deleted, I know that the worker is done 
+with all translations. Instead of writing a for loop, I just check a list in the tmp/ folder using the os.listdir() method. This might be more readable 
+than your wait function.  
+Nice work!
+
