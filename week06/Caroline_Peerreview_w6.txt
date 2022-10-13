@@ -1,0 +1,65 @@
+Peer Review Caroline Week 6
+By: Frederik
+
+This is a generally nice and structured solution with good comments to make it easy to read. I have a little problem with your naming of
+the first flag in the following loop of your administrator:
+'''
+with open(infile_path, "rb") as in_fi:
+    first = False
+    for line in in_fi:
+        if line.startswith(b">"):
+            if first:
+                tf.close()
+                submit2(f'python work.py -f {file_count}.fasta_sequence_temp.fsa',runtime=10, cores=1, ram=2,  directory='', modules='tools anaconda3/4.4.0')
+                file_count += 1
+                tf = open("{}.fasta_sequence_temp.fsa".format(file_count), "wb")
+                tf.write(line)
+            else:
+                tf = open("{}.fasta_sequence_temp.fsa".format(file_count), "wb")
+                tf.write(line)
+                first = True
+        else:
+            tf.write(line)
+'''
+
+Because the flag does not indicate that it is the first entry but instead that it is not. The flag should therefore be called something like "not_first".
+This way, when the not_first flag is true, it is all other entries.
+
+Furthermore, regarding the solution, I think it would have been nice to see how you solved the first exercise, as you only shared your solution with the second. Although these share a lot, it is no problem. 
+
+Comments for scripts:
+Administrator:
+
+Although your collection strategy is viable, using a for-loop and the file.write() method, it could have been more optimal to simply use 'cat' call.
+I have done this using the following code:
+''os.system("cat " + " ".join(all_jobs) + " > complement.fasta")''
+
+
+Collector:
+Here my biggest problem is your use of string += for this, which is suboptimal. If you try to
+run the following code, you will observe an almost 40% improvement from the += to join solution:
+
+import time
+
+str_test = "random line of text, damn this is long\n"
+
+def stringAdd(n):
+    out = ""
+    for i in range(n):
+        out += str_test
+    return str_test
+
+def stringJoinFromArray(n):
+    out = []
+    for i in range(n):
+        out.append(str_test)
+    return "".join(str_test)
+
+start = time.perf_counter()
+a = stringAdd(10000)
+print(time.perf_counter()-start)
+
+start = time.perf_counter()
+a = stringJoinFromArray(10000)
+print(time.perf_counter()-start) 
+
