@@ -12,7 +12,7 @@ def get_parser():
     # Arguments
     parser.add_argument("-if", "--fastafile", type=str, dest="fastafile",
                         metavar="FILE",
-                        help="The inputfile to calculate complement strads")
+                        help="The fasta-file to retrieve the fasta-entry")
     
     parser.add_argument("-cor", "--coordinates", type=str, dest="cords",
                         metavar="HEADER_START HEADEREND SEQSTART SEQEND",
@@ -51,7 +51,5 @@ def main(args):
 
 
 if __name__ == "__main__":
-    start_time = datetime.now()
     args = get_args()
     main(args)
-    end_time = datetime.now()
