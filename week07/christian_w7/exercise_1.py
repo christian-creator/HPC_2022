@@ -12,11 +12,11 @@ def get_parser():
     # Arguments
     parser.add_argument("-i", "--infile", type=str, dest="infile",
                         metavar="FILE",
-                        help="The inputfile to calculate complement strads")
+                        help="The fasta-file to index")
     
     parser.add_argument("-index", "--index_file", type=str, dest="indexfile",
                         metavar="PATH",
-                        help="The tmp directory for single fasta files")
+                        help="The output index file")
     
     return parser
 
