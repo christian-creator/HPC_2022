@@ -1,0 +1,13 @@
+Peer review - Week 7: Frederik
+By: Caroline
+
+Generally, I always enjoy your solutions. You can really tell that you are
+really good at utilizing the different skills that you have aquired throughout
+the years, as well as new stuff. 
+
+As you have mentioned yourself you did not optimize the code. In order to do so,
+you have written some ideas yourself, I think these ideas are great. 
+
+For exercise 2 I also think you have done great with the coding. Personally, I 
+would have liked a few more comments, but with a simple code like this one, it 
+is debatable.
