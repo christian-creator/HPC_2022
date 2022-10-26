@@ -1,0 +1,41 @@
+Peer review - Week 7: CP
+By: Frederik
+
+EX1
+Your exercise 1 is nicely well-structured, though I do think putting the functionality in another function is a bit overkill, when it might as well just be your main function.
+Nice and simple solution.
+
+EX2
+The same can be said for exercise 2. I would also always advise to use the with statement, when opening files, due to the possibility of the file handler not being closed automatically without it, if an error occurs in your program.
+
+EX3
+Your exercise 3 is great. Nice use of a generator to find all matches. Interesting idea to use a tracker value instead of seek. It does make sense, though since you know the lengths of the chunks - if I am being nit-picky (which I am), you should change
+
+tracker += len(chunk)
+if len(chunk) < 100000:
+    index_file.write(f" {tracker}\n")
+    break
+    
+to
+
+CHUNK_SIZE = 100000
+----
+chunk_len = len(chunk)
+
+tracker += chunk_len
+if chunk_len < CHUNK_SIZE:
+    index_file.write(f" {tracker}\n")
+    break
+    
+for those sweet, sweet microseconds.
+
+An issue that your code does not handle is what happens if a header is on a chunk boundary.
+If so, chunk[header_index:].find(b"\n") would return -1, and you would get the wrong answer. For files like the human genome where there are very few headers, the clash is unlikely, but for a more "normal" fasta file, it could easily come to pass.
+
+I would also use "with" to open the index_file here for reasons as described.
+
+Oh, and the first line of the output index file has one more space than the rest due to an erroneous extra one on line 76 :P
+
+And also "if len(all_headers) > 0" is equivalent to "if all_headers" - sorry I'll stop.
+
+No I won't, actually... "if first_header is True". Lol <3
