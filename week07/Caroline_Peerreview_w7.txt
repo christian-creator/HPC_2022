@@ -1,0 +1,21 @@
+Peer review - Week 7: Caroline
+By: Christian
+
+General thoughts on the code:
+Generally, I think that the very logical structure of the code makes it very easy to read. However, it might have been nice to have some comments explaining 
+more in detail what you did. Still, I think your solution is very readable and with nice spacing
+
+General thoughts on solution:
+Although your solution makes logical sense, I do not think it is completely optimized. In my solution, I read the fastafile in chunks by using
+a "while loop" which greatly enhanced the speed of my programme. This can also be seen in your solution's performance, which uses roughly 9s to complete 
+indexing, while mine used 0.76s on a computerome-node. The hard part of reading in chunks with a while-loop is figuring out how to identify the ">"
+headers. I did this by using the .find() function, which returns the byte of the chunk where the header was found. When I have found a header, I can then 
+look for a "\n" to identify when the header is done. From these two positions, I can calculate all information necessary for indexing.
+
+
+Furthermore, i am confused as to how you got the .tell() function to work in a for-loop. Online it seems that this function can be
+imprecise when used in a for-loop which can result in errors of you indexes. See link below for explanation:
+
+https://stackoverflow.com/questions/36679102/python-3-using-file-tell-in-a-for-loop-yields-an-error
+
+Still, i think that you solution is good!
