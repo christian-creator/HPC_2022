@@ -95,5 +95,19 @@ while len(stack) > 0:
         bestvalue = estimate
         bestproblem = problem
 
+
+
 print(bestvalue,bestproblem,str(bestproblem.count("1")),return_sum_of_items(bestproblem,item_sizes),sep="\n")
+"""
+### bestvalue: 3000.8000000000006
+### bestproblem: 111111111111111111101000000000000000000000000000000000000000000000000000000000000000000000000000000
+### 1-count: 20
+### Weight of best problem 341.79999999999995
+"""
 print("--- %s seconds ---" % (time.time() - start_time))
+"""
+### Time 3.14 seconds
+"""
+
+# I was unable to find the best solution going to a 1/10 of a second. I am unsure, which optimization steps i need. or whether it is because i use a while-loop rather
+# Than a for-loop... However i doubt that this is the case.
