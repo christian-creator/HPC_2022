@@ -16,10 +16,12 @@ def read_list(path,max_index):
                 item_values.append(float(value))
     return item_names[:max_index], item_sizes[:max_index], item_values[:max_index]
 
+
 def return_sum_of_items(problem,list_of_interest,verbose=None):
     if verbose:print(sum([list_of_interest[i] for i,x in enumerate(problem) if x == "1"]),"problem-in-function",problem,"list-of-interest",list_of_interest)
     
     return sum([list_of_interest[i] for i,x in enumerate(problem) if x == "1"])
+
 
 def estimate_upperbound(problem,item_values,item_sizes,value_size_ratios):
     # Calculate intial size and estimate from values in list
