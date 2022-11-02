@@ -1,0 +1,26 @@
+Peer review - Week 8: Caroline
+By: Frederik
+
+You got the idea of how the program is supposed to work, which is great! The solution works nicely.
+
+First thing I notice is "if problem[i] == "X":", which should definitely be an elif instead.
+
+The biggest time optimization you haven't done is funnily enough switching the order of 1 and 0 on the stack, such that
+
+if 'X' in problem:
+    nextx = problem.find('X')
+    stack.append(problem[:nextx] + '1' + problem[nextx+1:])
+    stack.append(problem[:nextx] + '0' + problem[nextx+1:])
+    
+becomes
+
+if 'X' in problem:
+    nextx = problem.find('X')
+    stack.append(problem[:nextx] + '0' + problem[nextx+1:])
+    stack.append(problem[:nextx] + '1' + problem[nextx+1:])
+    
+This makes us look at the solutions with the largest items included earlier, which is generally better, as it save a lot of computations.
+
+Your estimation is loop is the part of the program that is run the most, and should therefore be the most optimized. Some sort of use of comprehensions or use of built-in vectorised functions could feasibly make the program faster.
+
+I don't understand why you take the absolute value in abs(maxsize - estimate_size), as the estimate_size should never exceed maxsize, if you hit the else statement.
