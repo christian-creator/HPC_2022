@@ -1,0 +1,17 @@
+Peer review Week 8 - Christian
+By: Caroline
+
+General thoughts on code structure:
+Really good structure. The functions also makes it very nicely compartmentalized.
+You have a good amount of high quality comments, which makes it easy to follow.
+The functions and variables are also named in a way that they make sense. For me
+it would have been nice if each function had a small comment linked to it, describing
+what it does, even though they have clear names and are understandable. I see that
+this would especially be beneficial for functions with long comprehensions.
+
+Thoughts on the solution:
+A really nice solution where you can tell that you have experimented with different
+methods of optimization, which is great to see and also a big inspiration for a
+"beginner optimizer" as myself. I tried running your code on my own computer, to
+test out some ideas for optimization, but were unable to find anything, that decreased
+the time substantially. 
