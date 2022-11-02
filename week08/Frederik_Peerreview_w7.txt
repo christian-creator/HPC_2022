@@ -1,0 +1,36 @@
+Peer review - Week 8: Frederik
+By: Christian
+
+General thoughts on the code:
+Generally, I think that the very logical structure of the code makes it very easy to read. Still, I prefer the general structure of functions; therefore, 
+it would have been cool to put the below code into a function and call it 'calculate_upperbound.'
+
+"""
+ size = sum((sizes[i] for i, x in enumerate(problem) if x=="1"))
+    estimate_size = size
+    estimate = sum((values[i] for i, x in enumerate(problem) if x=="1"))
+    for i in range(problem.find('X'), len(items)):
+        if estimate_size + sizes[i] > maxsize:
+            estimate += (maxsize - estimate_size) * density[i]
+            break
+        else: 
+            estimate_size += sizes[i]
+            estimate += values[i]
+"""
+Furthermore, although the code is very readable, it would have been nice with some descriptive comments for noobs like myself? An example could be:
+
+# Iterate from the first X to the end of the problem
+for i in range(problem.find('X'), len(items)):
+  xxx
+
+General thoughts on the solution:
+Of course, your solution is extremely nice. Although our solutions are very similiar you get a much better runtime. My runtime
+3.xx seconds and I cant really find the difference between our solutions. Like you, I found that switching how you append the problem to stack
+greatly increases the program's performance. I think that the only comment I have on the solution is in the line seen below:
+'''
+for i in range(problem.find('X'), len(items)):
+'''
+When you use the .find('X') function when the problem has been completely filled out, the function will return -1. Thus, in this case, you iterate from -1 to 
+the length of the problem. Consequently, I do not really understand how your solution ends with the same upperbound for the entire solution as my own. This is 
+because your solution would iterate over the entire problem and add additional scores to the upperbound. Most likely, your solution is saved by the max-weight 
+check you perform. Still, this might cause trouble anyways.
