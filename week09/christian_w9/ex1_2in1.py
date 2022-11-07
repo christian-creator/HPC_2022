@@ -39,6 +39,8 @@ def count_bases(entry):
 
 
 def Worker(name,seq):
+    """ Input is the header and sequence from a fasta entry, while the output is a modified header and the reverse complement seq"""
+    
     # Calculating reverse complement
     seq = seq[::-1] # Reverse the sequence 
     translation_table = seq.maketrans("atgc","tacg")
@@ -67,12 +69,12 @@ def Administrator_collector(infile, out_file):
     with open(infile) as fp: 
         jobs = [] 
         for counter,(name, seq) in enumerate(read_fasta(fp)):
-            # Name of TMP file
             jobs.append((name,seq)) 
 
-    # Call the worker on the infile script
+    # Call the worker on the passed name and seq
     result = Parallel(n_jobs=4)(delayed(Worker)(name, seq) for name,seq in jobs)
 
+    # Writing the output to the file
     with open(out_file, "w+") as outfile:
         for name,entry in result:
             print(name,file=outfile)
@@ -81,9 +83,7 @@ def Administrator_collector(infile, out_file):
 
 
 def main(args):
-    # put your code here
     Administrator_collector(args.infile, args.out_file)
-    # Wait for all tmp files to be removed in worker. When empty all files have been translated 
 
 if __name__ == "__main__":
     start_time = datetime.now()
