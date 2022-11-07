@@ -66,11 +66,7 @@ def find_all(a_str, pattern):
 
 def Indexer2(path_infile, index_file):
     """The optimized Indexer reads the fasta file in chunks and instead of iterating over the chunks it looks for the header start ">" 
-       and then calculates every entry postion relative to the header starts. I found that this solution was roughly 10x faster than the 
-       solution from exercise 1. 
-       !!!
-       I found that this indexer could index the entire human.fsa file in 0.78 seconds and have the same indexes as the slower solution.
-       However, the time seem to vary based on the node on computerome. 
+       and then calculates every entry postion relative to the header starts.
     Args:
         path_infile (str): path to fasta-file it should index
         index_file (str): path to the output index file
@@ -115,6 +111,8 @@ def Indexer2(path_infile, index_file):
 
 # Functions for translating and counting bases
 def Reader(path_infile, coordinates):
+    """ Reads and index coordinates and returns the header and the seq"""
+    
     h_start, h_end, seq_start, seq_end = [int(x) for x in coordinates.split()]
     fastafile = open(path_infile, 'rb')
     header_len = h_end - h_start
@@ -140,6 +138,8 @@ def count_bases(entry):
 
 
 def Worker(path_infile, coordinates):
+    """Gets input-file and coordinates for entry. Returns modified header and reverse-complement sequence"""
+    
     name, seq = Reader(path_infile, coordinates)
     # Calculating reverse complement
     seq = seq[::-1] # Reverse the sequence 
@@ -156,9 +156,10 @@ def Worker(path_infile, coordinates):
 
     return new_header,rev_comp_seq
 
-
-# FUnction for the Administrator
+# Functions for the Administrator
 def Administrator_collector(infile,index_file,out_file):
+    """ Reads index-file and passes entries to workers. Lastly it collects the results and writes to outfile"""
+    
     with open(index_file) as indexfile:
         all_coordinates = [] 
         for coordinates in indexfile:
@@ -179,7 +180,6 @@ def main(args):
     Indexer2(args.infile, index_filename)
     # Reading the index and passing coordinates to the Workers
     Administrator_collector(args.infile, index_filename, args.out_file)
-    # Wait for all tmp files to be removed in worker. When empty all files have been translated 
 
 if __name__ == "__main__":
     start_time = datetime.now()
