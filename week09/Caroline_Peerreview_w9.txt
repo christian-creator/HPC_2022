@@ -1,0 +1,54 @@
+Peer review - Week 9: Caroline
+By: Christian
+
+General thoughts on the code:
+Generally, I think the code's very logical structure makes it very easy to read. Furthermore, I also enjoy your use of functions, which makes it
+very easy to trace what you do.
+
+General thoughts on the solutions:
+Ex1)
+In this exercise, I have reserved the right to be nitpicky as your solution is logical and good. Okay...
+When you read, you fasta file using the function 
+"""
+def split_fasta(path):
+  ...
+"""
+The end output is a list of all fasta entries. This data structure is quite big, especially when you have the human.FSA file, or you can imagine an even bigger
+fasta file. Here a cool solution is to use a generator instead. You could read the fasta-file like this
+"""
+def read_fasta(fp):
+    name, seq = None, []
+    for line in fp:
+        line = line.strip()
+        if line.startswith(">"):
+            if name: yield (name, ''.join(seq))
+            name, seq = line, []
+        else:
+            seq.append(line)
+    if name: yield (name, ''.join(seq))
+"""
+The main advantage of the generator is that the entire fastafile is not saved in memory when passed to your rev_comp workers, but instead passes the 1 fasta entry at a time when called. If you would like to learn more about generators and why they are cool, see this video which I enjoyed (i don't
+completely understand them):
+
+https://www.youtube.com/watch?v=u3T7hmLthUU&t=421s
+
+Ex2:
+The same comment from above still stands :)
+
+In regards to the indexing i think that your solution makes logical sense however I do not think it is completely optimized. Instead of using a for-loop it could
+have been cool to read the fasta-file in chunks which would greatly enhance the speed of the indexing part. 
+
+Ex3:
+Here I think that there might be a problem in how you write the reverse complement to the  outfile as you do it as you use the seek function, which finds
+the bit corresponding to the header_start. However, as your modified header is longer than the original header the bit positions will all be shifted, and you
+can consequently write in the wrong places by accident. 
+
+In my solution, I have utilized the cool functionality of the function you use to call the "translator"
+"""
+results = Parallel(n_jobs=8)(delayed(function)(input) for x in iterator)
+"""
+The cool part is that the output is collected in the same order as the input, which means that when you have all of the output, you can overwrite the input file
+with the results object. This maintains the correct order and might also be faster as I only read once and write once. Still, I have to save all of the
+results in one object, which might cause memory issues.
+
+Still i liked your solutions! Good job!
