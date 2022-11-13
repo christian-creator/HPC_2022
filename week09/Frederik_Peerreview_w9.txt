@@ -1,0 +1,32 @@
+Peer review - Week 9: Frederik
+By: Caroline
+
+EX1
+Your exercise 1 is well structured. Simple and easy to read, though it would be
+nice with some descriptive comments throughout the code, for example before each
+function, to let the reader/user know what the function is intended to do. As we
+were asked to time the different solutions, it would have been interesting if
+you had inserted the time used in a comment.
+
+Your solution is as always also really nice. I especially liked your
+fasta_entries function. You have reused a lot of your previous code for this
+exercise, as it was intended, so nothing new.
+
+EX2
+I can see that you have changed your way of indexing, since week 7, so that it
+now works with a while loop. Really nice :) Also really nice use of trackers.
+You have a few more comments in this one, which is nice. As far as I have
+understood we were supposed to have the reverse_complement function output files
+with the complement strand. It seems as if this is not done in your solution.
+Although, this probably makes your solution quicker and looks nicer (at least
+compared to my solution with the files).
+
+EX3
+Here you have done the exact same, just changing output_fasta to input_fasta in
+line 92, but I bet you knew that ;) But I might have to make a comment on whether
+you have solved the exercise, as it says that the worker function should write
+the complement strand directly back into the file at the right place, which to
+my knowledge is not done here. So again it would have been nice to see how you
+would have solved this exercise.
+
+Your code is as always very solid and nice. 

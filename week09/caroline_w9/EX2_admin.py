@@ -17,11 +17,13 @@ path2fsa = "human.fsa"
 
 # Read fasta file and indexes it.
 def index_fasta(path):
+    # Flag
     not_first = False
     index = list()
+
     with open(path, "rb") as fi:
-        line = fi.readline()
-        while line:
+        # Indexing the file
+        for line in fi:
             if not_first:
                 if line.startswith(b">"):
                     seq_end = fi.tell() - 1
@@ -35,7 +37,6 @@ def index_fasta(path):
                 seq_start = fi.tell()
                 header_start = seq_start - len(line)
                 header_end =  seq_start - 1
-
                 not_first = True
 
         seq_end = fi.tell()
@@ -43,15 +44,15 @@ def index_fasta(path):
 
     return index
 
-    # Function for counting bases in the entry_line
-    def bases_count (entry_line):
-        A_count = entry_line.count("a")
-        T_count = entry_line.count("t")
-        C_count = entry_line.count("c")
-        G_count = entry_line.count("g")
-        N_count = entry_line.count("n")
+# Function for counting bases in the entry_line
+def bases_count (entry_line):
+    A_count = entry_line.count("a")
+    T_count = entry_line.count("t")
+    C_count = entry_line.count("c")
+    G_count = entry_line.count("g")
+    N_count = entry_line.count("n")
 
-        return A_count, T_count, C_count, G_count, N_count
+    return A_count, T_count, C_count, G_count, N_count
 
 # Worker function that results in the reverse complement of the sequence
 def reverse_complement(filename, idx):

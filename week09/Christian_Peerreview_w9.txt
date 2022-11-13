@@ -1,0 +1,14 @@
+Peer review - Week 9: Christian
+By: Frederik
+
+Overall, good code and very similar to my own solution - so not much to comment on, unfortunately.
+
+Exercise 1: 
+Good. Not really much else to say. You might gain a bit of performance with reading binary instead, tho. Which you do later, so yeah.
+
+Exercise 2: 
+Except for the criticism I already gave for your indexing exercise in week 7, it's good. You could skip writing the index file to disk. Either that or make it reuse the index instead of overwriting the file again.
+Also, you accidentally left in the syscall function.
+
+Exercise 3: 
+I think your thought about the file write is good - I couldn't find a better solution either.
