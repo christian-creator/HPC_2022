@@ -1,0 +1,75 @@
+Peer review - Week 9: Frederik
+By: Christian
+
+General thoughts on the code:
+As per usual, your solution is quite well structured with a very easy-to-read and pythonic style. Still, I am missing some comments on what your code does. I 
+that this is especially true when you use modules from the Python language, which may be less common. Here I'm referring to the collections. defaultdict
+which i am not familiar with. It would have been cool to tie one comment on why you use this dict structure instead of the normal one.
+
+General thoughts on the solution
+Ex1. 
+The main issue I have with your solution is how you pass through the sequence in the following lines:
+"""
+for length in KMER_LENGTHS:
+            counter_stop = len(seq) - length
+            for kmer in kmers(seq, length):
+                kmer_dict[length][kmer] += 1
+
+"""
+This means that you read the sequence three times, one for each length, when you instead could have created all k-mer lengths from that position, thus only
+passing the sequence once. Although I have not tested whether my approach is faster, I think that you would agree that it makes more sense as it may scale
+better with very long sequences like the chromosome.
+
+I also like how you remove all of the K-mers with non-"atgc" charecters after they have been counted as you dont need to check all K-mers.
+"""
+for length in KMER_LENGTHS:
+    keys = list( kmer_dict[length].keys())
+    for key in keys:
+        if any([char not in 'acgt' for char in key]):
+            del kmer_dict[length][key]
+"""
+However, as you already pass through all of the K-mer keys when you calculate over-represented K-mers, it would have been logical to include the check 
+there. This way, you pass the keys the fewest number of times possible making it more scaleable.
+"""
+for substring, count in kmer_dict[length].items():
+        p_substring = 1
+        for char in substring:
+            p_substring *= p[char]
+        if not any([char not in 'acgt' for char in key]): # My addition
+          if count / total_kmers > 1.4 * p_substring:
+              print((count / total_kmers) / p_substring)
+              print(substring, count, length)
+""""
+
+Otherwise i think our solutions resemble eachother alot... Cool solution!
+
+Ex2.
+The same comments as above still stand.
+
+I really like how you aggregate the results in the final dict! 
+
+
+Still, as we discussed load distributions during the week, I know you considered it (you thought the chromosomes were roughly sorted
+by length). However, it would be cool to make sure... The way that I do it is by using an Administrator function that sorts the indexes by the
+number of bits in the indexed chromosome. My solutions is below:
+
+"""
+coordinates = sorted([index.rstrip() for index in open(index_file,"r").readlines()], 
+                            key=lambda x: int(x.split()[-1]) - int(x.split()[-2]),
+                            reverse=True) 
+
+result = Parallel(n_jobs=7)(delayed(get_kmer_dict_basecounts)(path_infile, coord, kmer_lengths) for coord in coordinates)
+
+"""
+
+LOL 
+"""
+result = Parallel(n_jobs=N_JOBS, verbose=69)(delayed(find_kmers)(index, KMER_LENGTHS) for index in index_fasta(input_fasta))
+"""
+
+
+Another comment would be that you calculate the entire length of the chromsome by using the total_length variable. However, would'nt you be able to 
+just use the nucleotide counts? Are we insterested in the counts of n? Im not sure.
+
+Once again our soltuions resemble each other alot good job!
+
