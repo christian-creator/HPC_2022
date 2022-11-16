@@ -1,0 +1,64 @@
+Peer Review - Week 10: Caroline
+By: Frederik
+
+Exercise 1:
+Your code only check for 5-mers, but whould check for 5, 6 and 7-mers. The first exercise also shouldn't be parallelized, but since it is, no matter.
+There are a few things about you code, that I worry might make it produce the wrong answer and a few inaccuracies:
+
+When you use
+
+if "n" not in seq[i:i+k] and "\n" not in seq[i:i+k]:
+
+the only base you are excluding is 'n', while multiple other mixed nucleotide letters exist (instead think of it as only keeping 'atcg').
+You also exclude k-mers with a newline character in them, this removes a ton of valid k-mers, as FASTA files include a newline every 60 letters.
+Thus all of the k-mers containing the end of one line and the start of another are incorrectly removed. Just do .replace("\n", "").
+
+For the counting, you write
+
+a_count += seq[i].count("a")
+t_count += seq[i].count("t")
+g_count += seq[i].count("g")
+c_count += seq[i].count("c")
+
+which is really inefficient. .count() works really well for long strings, where the C-loop in the implementation makes it extremely superior, but for single letters it really doesn't make sense.
+I would advise that you do it outside the for-loop, such that you only do it once per sequence.
+
+As far as I can see without running it
+
+kmer_dict = {key: kmer_dict.get(key, 0) + res[0].get(key, 0) for key in res[0]}
+
+will not work as intended. This is because every time you have a new res object in the loop, the new, overwritten dict only has the keys of the new res[0] dict.
+Thus, only a fraction of the actual k-mers will be in the final dict (that is - the ones found in the final res object in the loop).
+
+When you write 
+
+for i in range(len(kmer)):
+  if kmer[i] == "a":
+  
+you don't really use the index. Instead, do
+
+for nuc in kmer:
+  if nuc == "a":
+  
+But in general, the solution is quite well-structured and makes a lot of sense! :)
+
+Exercise 2:
+I can see that you try to fix a lot of the problems with your code in exercise 1 here, which is great!! That is: the nucleotide counts (perfect fix), the different k-mer lengths and to a certain extent the 'n' removal
+Even though you don't actually use "contains_certain_characters"? You also need another layer in you dict, as
+
+kmer_dicts = kmer_count(kmer_len, seq)
+
+actually just overwrites the dict for every k-mer length instead of saving all of them.
+
+Also, another small pet peeve, like the kmer[i] loop earlier:
+
+for j in range(len(k)):
+  kmer_len = k[j]
+  
+Just do
+for kmer_len in k:
+  ...
+  
+and save a step ;)
+
+Hope these comments can be of use!
