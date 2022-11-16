@@ -1,0 +1,29 @@
+Peer review - Week 9: Christian
+By: Caroline
+
+EX1:
+As per usual your code is very nice, which makes it easy to follow. You do have
+a lot of functions, which compartmentalizes the code nicely. Personally, I think
+it would be nice if you had added just a few more comments to this exercise, e.g.
+just adding a line above each function with a small message of what it does, it
+would be a great supplement to the already descriptive function names. Really
+nice efficient solution. Really nice way of iterating through all k-mers
+minimally.
+
+EX2:
+Here you have more comments, which is really nice.
+
+Really cool that you sort the chromosomes by bits, to make sure that the
+chromosomes are sorted nicely before running it. Very clever way of implementing
+the least-load method. Did you find out if it made a difference with and without
+sorting?
+
+As the rest of us has done, you have also found kmers based on the sequence.
+It would be cool if you had added a few thoughts on how to find all kmers if you
+had chosen to do it in chunks.
+
+Now you have not written the time it took for you to run this on human.fsa, but
+from what I remember you said it took ~3 min, which also tells that you have
+solved this exercise VERY good.
+
+I don't know what to say.. amazing job!
