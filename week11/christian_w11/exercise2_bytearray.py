@@ -124,7 +124,7 @@ def get_kmers(path_infile,index):
 
     # Counting the k-mers by itertating over generator K-mers.
     counting_array = bytearray(4**10)
-    seq = seq[:int(len(seq)/100)]
+    # seq = seq[:int(len(seq)/100)]
     kmer_lengt = 10
     
     for i in range(0,len(seq) - kmer_lengt):
