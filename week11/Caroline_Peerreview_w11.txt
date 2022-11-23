@@ -1,0 +1,59 @@
+Peer review - Week 9: Caroline
+By: Christian
+
+General thoughts on the code:
+As per usual, your solution is quite well structured and very easy to read wit a cool and pythonic style.
+Very well spaced comments making your code very easy to read!! Very nice!
+
+
+General thoughts on the solution:
+Ex 1.
+I think our solutions resemble eachother alot. We also get very similair performance measures! I can clearly see that you have improved over the passed couple of weeks!
+Very nice use of the different generators both for the sequences and the K-mers!! 
+My only pet-peeve is the following lines from your k-mer generator:
+"""
+if any([char not in 'acgt' for char in seq[i:i+k]]):
+            pass
+        else:
+            yield seq[i:i+k]
+"""
+Here you could simply change the "any([char not in 'acgt' for char in seq[i:i+k]])" to "all([char in 'acgt' for char in seq[i:i+k]])" and save some lines. Resulting in the following
+
+"""
+if all([char in 'acgt' for char in seq[i:i+k]]):
+            yield seq[i:i+k]
+"""
+Otherwise very good!
+
+Ex 2.
+Although i think your soltuions makes alot of sense there are a couple of thricks you can do to make it even faster.
+
+The main differences is how we read the file and how we generate the binary encodings of the k-mer.
+
+1. You can read the infile with binary-mode which makes comparisons way faster. I have printed my dna2num-ish funciton below:
+
+"""
+for nuc in seq[i:i+kmer_lengt]:
+    num <<= 2
+    if nuc == 97: # a:0b1100001:97
+        pass
+    elif nuc == 116: # t:0b1110100:116
+        num |= 0b11
+    elif nuc == 103: # g:0b1100111:103
+        num |= 0b01
+    elif nuc == 99: # c:0b1100011:99
+        num |= 0b10
+    else:
+        bad_entry = True
+        break
+"""
+The main differences is that i read in binary mode and compare to integers refering to the sum of the binary encoding of the letters.
+
+2.Furthermore, i do a little trick where i break the kmer-generation if i see a bad nucleotide. Thus also means that i do not need to do the following check on all K-mers.
+"""
+  if any([char not in 'acgt' for char in seq[i:i+k]]):
+"""
+I found that these two smaller changes roughly saved me 20% of time. 
+
+Otherwise i think that your solution is very good and logical!!
+https://www.youtube.com/watch?v=LBduNcf1eQc
