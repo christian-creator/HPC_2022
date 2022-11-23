@@ -1,0 +1,34 @@
+Peer review - week 11: Frederik
+By: Caroline
+
+EX1:
+As per usual you have some good solutions, with code written in a pythonic way
+and with very nice structure, that makes it easy to follow. With very clever
+solutions on how you add a single character to the string, instead of loading a
+whole new one, while also making sure that you only allow kmers with the correct
+letters to pass through.
+
+And also a cheeky way of making sure that it only prints ten kmers by using your
+max_c variable. If I have understood it correctly, this is very cheeky way of
+saving some time.
+
+Previously you have been a fond user of reading files as bytes, but you have
+skipped this here, why?
+
+You have written a few comments, which I guess are more speculations, but again
+it would be nice with some descriptive comments as well.
+
+EX2:
+Again, beautiful solutions and coding style. Would like some comments. As I
+guess it was intended you have reused a lot of code, so above comments still
+stand.
+
+Something that I noted was the use of a mask:
+"""
+mask = int(k * '11', 2)
+"""
+Personally, I found this very interesting that you did it this way. Very fun :)
+
+Generally, I would have liked a few more comments with your code, as it would
+first of all make it easier to read, and second of all maybe to share some of
+your considerations.
