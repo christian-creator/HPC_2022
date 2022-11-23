@@ -1,0 +1,16 @@
+Peer review - Week 11: Christian
+By: Frederik
+
+Yo, it's all pretty nice, my dude. Your functions are well structured and well-commented.
+
+As we discussed, you can cut runtime by adding the bytes to the prior k-mer and cutting off the other end instead of re-making the k-mer every time.
+
+Also note that you will miss one k-mer at the end of every seq, as
+
+for i in range(0,len(seq) - kmer_lengt):
+
+never reaches len(seq) - kmer_lengt, but only len(seq) - kmer_lengt - 1. Thus it should be
+
+for i in range(0,len(seq) - kmer_lengt + 1):
+
+Nice idea with the load balancing as well. Not much to say :)
