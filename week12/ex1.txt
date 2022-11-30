@@ -1,0 +1,10 @@
+# Bloom filter parameters
+We require a false positive rate p < 0.01 for a bloom filter with 30-mers.
+k = ceil(-ln(p) / ln(2)) = ceil(6.64) = 7
+
+m = (-n*ln(p)) / (ln(2)^2) = (-3 * 10^9 * ln(0.01))/(ln(2)^2) = 2.88 * 10^10
+as a power of 2: log2(2.88*10^10) = 34.75, so we choose 2^35
+
+p = (1-exp(-4*3*10^9/(2^35)))^4 = 0.0076, if we decrease k to 4.
+
+
