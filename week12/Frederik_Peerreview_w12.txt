@@ -1,0 +1,20 @@
+Peer review - week 12: Frederik
+By: Christian
+
+General thoughts on the code:
+As per usual, your solution is well structured and easy to read with a cool and pythonic style. 
+Furthermore, as per usual, i am missing some comments ;). Examples: When you set your bitfield size to 
+35, it would be nice to know why. Another example is when you use functions that, although native to 
+python, may not be common. Like this line: 
+functools.reduce(or_, bloom_filter_files(result)).to_bytes(2**(bitfieldsize-3), 'big')
+I'm not smart enough to figure out what it does.
+
+General thoughts on the solution:
+Your solution is very good. Much more optimized than mine. We can see this both in the time
+and the final output. I get some hits in the last exercise, indicating that I get a lot of collisions (Maybe because of bad slices into my hash function).
+As your solution is much.. much better than mine. It is hard to comment on certain possible mistakes
+or optimization ideas. I like that you read the K-mers by bit shifting, resulting in you not having
+to reread the entire K-mer string. I like that your solution is parallelized so its fast. I think the strategy you use to slice into the bytearray is very excellent; however, I do not understand it. What is the bitfieldsize.. Why do you bit-shift your position 3 times to the right.. Why AND with 7.. Comments would have been nice to simple minded people like myself :)
+
+You clearly have a superior understanding on how to use bitshifts, index into byte-arrays and so on
+Very good job!
