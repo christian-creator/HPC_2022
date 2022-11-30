@@ -1,0 +1,43 @@
+Peer review - Week 12: Christian
+By: Caroline
+
+Exercise 1:
+Very nice considerations, and it is very nice that you have written them down, as
+it shows your understanding. As you find the end probability to be 0.00494, and
+with 6.64 hash functions. I believe that you could have increased the probability
+and thereby have decreased the number of hash functions needed. This is of course
+a choice that depends on how low you want your probability :)
+
+Exercise 2:
+I can see, that you have actually only used 4 hash functions in exercise 2, so I
+guess you have changed it from your initial calculations in exercise 1. But this
+is also what we talked about monday :) I can also see that you use the md5 hash-
+function in the hashit function, but you do actually not use this function,
+instead you use the sha256 function in your add_kmers_to_bloomfilter function. I
+believe this does not make a significant performance difference, I was just
+wondering where your considerations from exercise 1 has gone and whether you
+developed some new, which changed the plan.
+
+Generally, I think you have a nice solution, which is readable. And you are as
+per usual very good at adding nice descriptions to your functions.
+
+Exercise 3:
+The first thing I notice is that you have not outputted the results in percent.
+This is of course an easy fix, but that would have made it easier to determine
+what the results meant. As far as I can see you are counting the amount of kmers
+that are present in both mixeddna.fsa sequence and the bloom filter, and which
+are not present in the bloom filter. Now I of course did not compute exactly
+these numbers from my solutions, but it seems as if you get a lot of false counts,
+even on the sequences titled with homo sapiens, which seem suspicious as you get
+around the same percentage for the pig and the human (~3%, if i am correct). If I
+were to come with an idea to why this is.. hmm, i tried looking into a few different
+things, but could not find anything that popped out. But it would be interesting
+to discuss this further.
+
+Another small idea I got while looking through your code, was that you can break
+your loop on line 56, after you have found your first false. I guess this is not
+the most time consuming step, but maybe.. haha
+
+I always like your structure and way of coding, as it is very readable and generally
+nice. And this is also an example of this. I hope the comments I have written can
+be used and that I have not misunderstood some of the points.
