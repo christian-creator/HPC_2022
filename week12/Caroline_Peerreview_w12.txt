@@ -1,0 +1,42 @@
+Peer review - week 12: Caroline
+By: Frederik
+
+Exercise 1:
+Perfect!
+
+Exercise 2:
+I think it would have been better to just go for a non-parallel solution here, as it would have lended itself to a much better solution. 
+My parallelized solution relies on creating a bloom filter for each entry in the fasta, which is great for huge files, but not for smaller files.
+In the case of a smaller file, your approach is probably better, though I think a list of tuples would be much better:
+
+bytebit_pr_seq += str(bytepos) + "," + str(bitpos) + ","
+
+replaced with
+
+bytebit_pr_seq.append((bytepos, bitpos))
+
+Here:
+res = Parallel(n_jobs = 4)([delayed(bytebit_str)(infile.read(index[3]-index[2]+1)) for index in idx_fsa])
+
+I would also advise that each subprocess read the file on its own. That way, the file content doesn't have to be transmitted from the main process to the subprocess via pickling.
+
+As Peter mentions in the exercise definition, the functions should not actually be used as they are, due to the fact that function calls in Python are sloooow.
+Therefore the content of the functions should have been inserted in appropriate places.
+
+A lot of small details you could change, such as 'del bloom_filter' being unnecessary, but they don't really matter that much in the overall picture.
+
+Exercise 3:
+Your way of calculating the number of hits is unfortunately not correct. For every k-mer you add 1 to the number of k-mers and then execute this:
+
+kmer_hash = hashit(kmer)
+reverse_kmer_hash = hashit(kmer.translate(complement)[::-1])
+for i in range(k):
+    kmer_hash, bytepos, bitpos = nextposition(kmer_hash)
+    if isbitset(bloomfilter, bytepos, bitpos):
+        no_of_hits += 1
+    reverse_kmer_hash, bytepos, bitpos = nextposition(reverse_kmer_hash)
+    if isbitset(bloomfilter, bytepos, bitpos):
+        no_of_hits += 1
+
+The wasy bloom filters work, it should only count as being a hit if ALL k bits are set to 1, otherwise it is not in the bloom filter.
+And I would count the reverse as a k-mer as well (that is change it to no_of_kmers += 2). Otherwise a perfect match would yield a 200% match!
